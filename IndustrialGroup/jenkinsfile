@@ -1,0 +1,64 @@
+def Pipeline_Message
+pipeline{
+  agent any
+  
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git branch:'master', url:'https://github.com/Arnablens/codingchallenge2.git'
+        script 
+        {
+            Pipeline_Message=env.STAGE_NAME
+            echo "Cloning Git"
+        }
+      }
+    }
+   
+    stage('Clean Old Packages') 
+    {
+        steps
+        {
+            script 
+            {
+                Pipeline_Message=env.STAGE_NAME
+                echo "Cleaning old packages"
+            }
+            dir("/root/.jenkins/workspace/yollo/company/")
+            {
+                sh label: 'Clean', script: 'mvn clean'
+            }
+        }
+    }
+    stage('Maven Compile') 
+    {
+        steps
+        {
+            script 
+            {
+                Pipeline_Message=env.STAGE_NAME
+                echo "Maven Compile"
+            }
+            dir("/root/.jenkins/workspace/yollo/company")
+            {
+                sh label: 'Compile', script: 'mvn compile'
+            }
+        }
+    }
+    stage('Maven Package and install') 
+    {
+        steps
+        {
+            dir("/root/.jenkins/workspace/yollo/company")
+            {
+                sh label: 'Testing', script: 'mvn clean install'
+            }
+            script 
+            {
+                Pipeline_Message=env.STAGE_NAME
+                echo "Package and Install"
+            }
+        }
+    }
+  }
+}
+
