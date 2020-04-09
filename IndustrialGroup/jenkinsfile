@@ -5,7 +5,7 @@ pipeline{
   stages {
     stage('Cloning Git') {
       steps {
-        git branch:'master', url:'https://github.com/Arnablens/codingchallenge2.git'
+        git branch:'master', url:'https://github.com/rashmisah/hookup.git'
         script 
         {
             Pipeline_Message=env.STAGE_NAME
