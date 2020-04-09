@@ -23,7 +23,7 @@ pipeline{
                 Pipeline_Message=env.STAGE_NAME
                 echo "Cleaning old packages"
             }
-            dir("/root/.jenkins/workspace/yollo/company/")
+            dir("/root/.jenkins/workspace/industrial/IndustrialGroup/")
             {
                 sh label: 'Clean', script: 'mvn clean'
             }
@@ -38,7 +38,7 @@ pipeline{
                 Pipeline_Message=env.STAGE_NAME
                 echo "Maven Compile"
             }
-            dir("/root/.jenkins/workspace/yollo/company")
+            dir("/root/.jenkins/workspace/industrial/IndustrialGroup")
             {
                 sh label: 'Compile', script: 'mvn compile'
             }
@@ -68,7 +68,7 @@ pipeline{
                 Pipeline_Message=env.STAGE_NAME
                 echo "Creating Image"
             }
-            dir("root/.jenkins/workspace/yollo/company/")
+            dir("/root/.jenkins/workspace/industrial/IndustrialGroup/")
             {
                 script 
                 {
@@ -76,75 +76,7 @@ pipeline{
                 }
             }
         }
-    }  stage('Create image') 
-    {
-        steps
-        {
-            script
-            {
-                Pipeline_Message=env.STAGE_NAME
-                echo "Creating Image"
-            }
-            dir("/var/lib/jenkins/workspace/fulldemoarnab/company/")
-            {
-                script 
-                {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
-            }
-        }
-    }  stage('Create image') 
-    {
-        steps
-        {
-            script
-            {
-                Pipeline_Message=env.STAGE_NAME
-                echo "Creating Image"
-            }
-            dir("/var/lib/jenkins/workspace/fulldemoarnab/company/")
-            {
-                script 
-                {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
-            }
-        }
-    }  stage('Create image') 
-    {
-        steps
-        {
-            script
-            {
-                Pipeline_Message=env.STAGE_NAME
-                echo "Creating Image"
-            }
-            dir("/var/lib/jenkins/workspace/fulldemoarnab/company/")
-            {
-                script 
-                {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
-            }
-        }
-    }  stage('Create image') 
-    {
-        steps
-        {
-            script
-            {
-                Pipeline_Message=env.STAGE_NAME
-                echo "Creating Image"
-            }
-            dir("/var/lib/jenkins/workspace/fulldemoarnab/company/")
-            {
-                script 
-                {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
-            }
-        }
-    }
+     }
   }
 }
 
